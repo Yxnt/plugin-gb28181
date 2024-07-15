@@ -53,8 +53,8 @@ type GB28181Config struct {
 	tcpPorts          PortManager
 	udpPorts          PortManager
 
-	Position GB28181PositionConfig //关于定位的配置参数
-
+	Position     GB28181PositionConfig //关于定位的配置参数
+	CustomRoutes map[string]string     // 自定义路由，支持公有云负载均衡
 }
 
 var SipUri *sip.SipUri
@@ -68,6 +68,12 @@ func (c *GB28181Config) initRoutes() {
 			c.routes[k[0:lastdot]] = k
 		}
 	}
+
+	GB28181Plugin.Info("test gb28181")
+	for k, v := range c.CustomRoutes {
+		c.routes[k] = v
+	}
+
 	GB28181Plugin.Info("LocalAndInternalIPs", zap.Any("routes", c.routes))
 }
 
