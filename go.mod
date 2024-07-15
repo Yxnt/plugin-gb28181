@@ -1,4 +1,4 @@
-module m7s.live/plugin/gb28181/v4
+module github.com/Yxnt/plugin-gb28181
 
 go 1.21
 
