@@ -62,8 +62,8 @@ var SipUri *sip.SipUri
 func (c *GB28181Config) initRoutes() {
 	c.routes = make(map[string]string)
 	tempIps := myip.LocalAndInternalIPs()
-	for k, v := range tempIps {
-		c.routes[k] = v
+	for k := range tempIps {
+		c.routes[k] = "47.102.198.22"
 		if lastdot := strings.LastIndex(k, "."); lastdot >= 0 {
 			c.routes[k[0:lastdot]] = k
 		}
